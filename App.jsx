@@ -1,0 +1,618 @@
+import React, { useState } from "react";
+
+const App = () => {
+  const [activePage, setActivePage] = useState("home");
+  const [formData, setFormData] = useState({ name: "", phone: "", message: "" });
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const handleInputChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const message = `Olá! Meu nome é ${formData.name}. Gostaria de saber mais sobre os serviços. Meu telefone: ${formData.phone}. Mensagem: ${formData.message}`;
+    window.open(`https://wa.me/5534991308780?text=${encodeURIComponent(message)}`);
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  useEffect(() => {
+    scrollToTop();
+    setMenuOpen(false);
+  }, [activePage]);
+
+  const HomePage = () => (
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-beige-50 to-yellow-50">
+      {/* Hero Section */}
+      <section className="py-20 px-6 text-center">
+        <div className="max-w-4xl mx-auto">
+          <h1 className="text-4xl md:text-6xl font-bold text-purple-800 mb-6 leading-tight">
+            Tecnologia sem medo —
+            <br />
+            <span className="text-yellow-600">no seu tempo, do seu jeito!</span>
+          </h1>
+          <p className="text-xl text-gray-700 mb-10 max-w-2xl mx-auto">
+            Aprendizado leve, com paciência e autonomia para pessoas idosas e iniciantes.
+            Domine celular, WhatsApp, apps e muito mais sem depender dos outros.
+          </p>
+          <a
+            href="https://wa.me/5534991308780"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-8 rounded-full text-xl transition-all duration-300 transform hover:scale-105 shadow-lg"
+          >
+            Fale conosco no WhatsApp e comece hoje!
+          </a>
+        </div>
+      </section>
+
+      {/* Services Preview */}
+      <section className="py-16 bg-white bg-opacity-70">
+        <div className="max-w-6xl mx-auto px-6">
+          <h2 className="text-3xl font-bold text-center text-purple-800 mb-12">O que ensinamos</h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              { icon: "📱", title: "WhatsApp & Celular", desc: "Mensagens, ligações, fotos e segurança" },
+              { icon: "🏦", title: "Bancos Digitais", desc: "Pagar contas, transferências e PIX com segurança" },
+              { icon: "📹", title: "Vídeo Chamadas", desc: "Conectar com família e amigos sem complicação" }
+            ].map((service, index) => (
+              <div key={index} className="text-center p-6 rounded-xl bg-beige-100 hover:shadow-xl transition-all duration-300">
+                <div className="text-5xl mb-4">{service.icon}</div>
+                <h3 className="text-xl font-bold text-purple-700 mb-2">{service.title}</h3>
+                <p className="text-gray-600">{service.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="py-16">
+        <div className="max-w-6xl mx-auto px-6">
+          <h2 className="text-3xl font-bold text-center text-purple-800 mb-12">Histórias de nossos alunos</h2>
+          <div className="grid md:grid-cols-2 gap-8">
+            {[
+              { name: "Maria, 78 anos", text: "Aprendi a falar com meus netos no WhatsApp. Hoje, eu mesma envio fotos e faço chamadas de vídeo. Me sinto mais independente!" },
+              { name: "José, 65 anos", text: "Nunca tinha usado internet bancária. Agora pago minhas contas sozinho e até faço PIX. Que alívio não depender mais dos outros!" }
+            ].map((testimonial, index) => (
+              <div key={index} className="bg-white rounded-2xl p-8 shadow-lg">
+                <div className="text-yellow-400 text-2xl mb-4">★★★★★</div>
+                <p className="text-gray-700 mb-4 italic">"{testimonial.text}"</p>
+                <p className="font-semibold text-purple-700">— {testimonial.name}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+
+  const ServicesPage = () => (
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-beige-50 to-yellow-50 py-20 px-6">
+      <div className="max-w-6xl mx-auto">
+        <h1 className="text-4xl md:text-5xl font-bold text-center text-purple-800 mb-16">Nossos Serviços</h1>
+        
+        <div className="grid md:grid-cols-2 gap-12">
+          {[
+            { icon: "🏫", title: "Aulas Presenciais ou Online", desc: "Na sua casa ou pelo computador, no horário que você preferir. Aprendizado no seu ritmo, com atenção individual." },
+            { icon: "❤️", title: "Paciência e Passo a Passo", desc: "Nada de pressa. Explicamos tudo com calma, sem jargões técnicos. Repetimos quantas vezes forem necessárias." },
+            { icon: "🔐", title: "Criação de Contas e Senhas", desc: "Ensino seguro para criar e lembrar senhas, configurar e-mails e apps importantes com proteção." },
+            { icon: "📄", title: "Documentos Digitais e Redes", desc: "Ajuda com CPF, CNH digital, INSS, além de Facebook, Instagram e outros apps do dia a dia." }
+          ].map((service, index) => (
+            <div key={index} className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">
+              <div className="text-6xl mb-6">{service.icon}</div>
+              <h3 className="text-2xl font-bold text-purple-700 mb-4">{service.title}</h3>
+              <p className="text-gray-600 text-lg leading-relaxed">{service.desc}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* WhatsApp Features Section */}
+        <div className="mt-16">
+          <h2 className="text-3xl font-bold text-center text-purple-800 mb-8">Recursos do WhatsApp</h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              { icon: "🔒", title: "Criptografia de ponta a ponta", desc: "Mensagens e chamadas protegidas com segurança avançada." },
+              { icon: "🌐", title: "Ligue e envie mensagens gratuitamente*", desc: "Comunique-se com o mundo sem custo adicional." },
+              { icon: "👥", title: "Grupos", desc: "Converse facilmente com grupos de pessoas." },
+              { icon: "🎨", title: "Expressão criativa", desc: "Use adesivos, voz, GIFs e mais para se expressar." },
+              { icon: "🛡️", title: "Proteção", desc: "Camadas de segurança para ajudar a manter sua privacidade." },
+              { icon: "📸", title: "Status", desc: "Compartilhe fotos, vídeos e notas de voz no Status." },
+              { icon: "📢", title: "Notícias", desc: "Fique atualizado sobre assuntos que importam para você." },
+              { icon: "❓", title: "Suporte", desc: "Obtenha ajuda com qualquer coisa." }
+            ].map((feature, index) => (
+              <div key={index} className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">
+                <div className="text-5xl mb-6">{feature.icon}</div>
+                <h3 className="text-xl font-bold text-purple-700 mb-4">{feature.title}</h3>
+                <p className="text-gray-600">{feature.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="text-center mt-16">
+          <a
+            href="https://wa.me/5534991308780"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-8 rounded-full text-xl transition-all duration-300 transform hover:scale-105 shadow-lg"
+          >
+            Agende sua primeira aula gratuita!
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+
+  const AboutPage = () => (
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-beige-50 to-yellow-50 py-20 px-6">
+      <div className="max-w-6xl mx-auto">
+        <h1 className="text-4xl md:text-5xl font-bold text-center text-purple-800 mb-16">Sobre Nós</h1>
+        
+        <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
+          <div>
+            <img 
+              src="https://placehold.co/500x400/e6e1d3/9c8a6e?text=Professora+com+aluno" 
+              alt="Aula de tecnologia com empatia" 
+              className="rounded-2xl shadow-lg"
+            />
+          </div>
+          <div>
+            <h2 className="text-3xl font-bold text-purple-800 mb-6">Nossa Missão</h2>
+            <p className="text-xl text-gray-700 leading-relaxed mb-6">
+              Tornar o mundo digital acessível a todas as pessoas, especialmente idosos e iniciantes, com respeito, paciência e empatia.
+            </p>
+            <p className="text-xl text-gray-700 leading-relaxed">
+              Acreditamos que ninguém deveria se sentir excluído da era digital. A tecnologia deve servir a todos, em qualquer idade.
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <h2 className="text-3xl font-bold text-center text-purple-800 mb-12">Quem Somos</h2>
+          <p className="text-xl text-gray-700 text-center max-w-4xl mx-auto mb-12 leading-relaxed">
+            Somos profissionais de tecnologia apaixonados por ensinar. Com experiência em educação inclusiva, 
+            desenvolvemos métodos simples e eficazes para que qualquer pessoa possa aprender a usar o digital 
+            com confiança e autonomia.
+          </p>
+
+          <div className="grid md:grid-cols-4 gap-8 mt-16">
+            {[
+              { icon: "💖", title: "Paciência", desc: "Nada de pressa. Respeitamos seu ritmo de aprendizado." },
+              { icon: "🤝", title: "Inclusão", desc: "Tecnologia para todos, independentemente da idade." },
+              { icon: "🔓", title: "Autonomia", desc: "Nosso objetivo é você fazer tudo sozinho." },
+              { icon: "😊", title: "Alegria", desc: "Aprender pode e deve ser uma experiência positiva." }
+            ].map((value, index) => (
+              <div key={index} className="text-center">
+                <div className="text-5xl mb-4">{value.icon}</div>
+                <h3 className="text-xl font-bold text-purple-700 mb-2">{value.title}</h3>
+                <p className="text-gray-600">{value.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
+  const ContactPage = () => (
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-beige-50 to-yellow-50 py-20 px-6">
+      <div className="max-w-6xl mx-auto">
+        <h1 className="text-4xl md:text-5xl font-bold text-center text-purple-800 mb-16">Entre em Contato</h1>
+        
+        <div className="grid lg:grid-cols-2 gap-16">
+          <div>
+            <h2 className="text-3xl font-bold text-purple-800 mb-8">Fale conosco</h2>
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div>
+                <label className="block text-lg font-semibold text-gray-700 mb-2">Nome</label>
+                <input
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleInputChange}
+                  required
+                  className="w-full p-4 border-2 border-purple-200 rounded-xl focus:border-purple-500 focus:outline-none text-lg"
+                  placeholder="Seu nome completo"
+                />
+              </div>
+              <div>
+                <label className="block text-lg font-semibold text-gray-700 mb-2">Telefone</label>
+                <input
+                  type="tel"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleInputChange}
+                  required
+                  className="w-full p-4 border-2 border-purple-200 rounded-xl focus:border-purple-500 focus:outline-none text-lg"
+                  placeholder="(XX) XXXXX-XXXX"
+                />
+              </div>
+              <div>
+                <label className="block text-lg font-semibold text-gray-700 mb-2">Mensagem</label>
+                <textarea
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  required
+                  rows="5"
+                  className="w-full p-4 border-2 border-purple-200 rounded-xl focus:border-purple-500 focus:outline-none text-lg"
+                  placeholder="Como podemos te ajudar?"
+                />
+              </div>
+              <button
+                type="submit"
+                className="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-8 rounded-xl text-xl transition-all duration-300"
+              >
+                Enviar Mensagem
+              </button>
+            </form>
+          </div>
+
+          <div>
+            <h2 className="text-3xl font-bold text-purple-800 mb-8">Outras formas de contato</h2>
+            
+            <div className="space-y-6 mb-8">
+              <div className="flex items-center p-4 bg-white rounded-xl shadow-lg">
+                <div className="text-4xl mr-4">📱</div>
+                <div>
+                  <p className="font-semibold text-gray-800">WhatsApp</p>
+                  <p className="text-gray-600">+55 34 99130-8780</p>
+                </div>
+              </div>
+              
+              <div className="flex items-center p-4 bg-white rounded-xl shadow-lg">
+                <div className="text-4xl mr-4">📍</div>
+                <div>
+                  <p className="font-semibold text-gray-800">Atendemos</p>
+                  <p className="text-gray-600">Presencialmente em Uberlândia e região, ou online para todo Brasil</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white rounded-2xl p-8 shadow-lg">
+              <h3 className="text-2xl font-bold text-purple-700 mb-4">Por que escolher o Tô no Digital UAI?</h3>
+              <ul className="space-y-3 text-gray-700">
+                <li className="flex items-start">
+                  <span className="text-green-500 mr-3">✓</span>
+                  Aulas com paciência e sem julgamentos
+                </li>
+                <li className="flex items-start">
+                  <span className="text-green-500 mr-3">✓</span>
+                  Método passo a passo, fácil de entender
+                </li>
+                <li className="flex items-start">
+                  <span className="text-green-500 mr-3">✓</span>
+                  Foco na sua autonomia e segurança
+                </li>
+                <li className="flex items-start">
+                  <span className="text-green-500 mr-3">✓</span>
+                  Suporte contínuo mesmo após as aulas
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
+  const PricingPage = () => (
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-beige-50 to-yellow-50 py-20 px-6">
+      <div className="max-w-7xl mx-auto">
+        <h1 className="text-4xl md:text-5xl font-bold text-center text-purple-800 mb-8">Nossos Planos</h1>
+        <p className="text-xl text-center text-gray-700 mb-16 max-w-3xl mx-auto">
+          Escolha a opção que melhor se adapta ao seu ritmo de aprendizado. 
+          Todos os planos incluem suporte personalizado e materiais exclusivos.
+        </p>
+        
+        <div className="grid md:grid-cols-3 gap-8 mb-16">
+          {[
+            {
+              title: "Aula Experimental",
+              price: "R$ 50",
+              period: "única",
+              features: [
+                "1 aula de 60 minutos",
+                "Avaliação do seu nível",
+                "Plano personalizado",
+                "Dicas imediatas",
+                "Sem compromisso"
+              ],
+              popular: false
+            },
+            {
+              title: "Pacote Mensal",
+              price: "R$ 200",
+              period: "por mês",
+              features: [
+                "4 aulas de 60 minutos",
+                "Acompanhamento contínuo",
+                "Materiais exclusivos",
+                "Suporte por WhatsApp",
+                "Garantia de satisfação"
+              ],
+              popular: true
+            },
+            {
+              title: "Suporte Avulso",
+              price: "R$ 80",
+              period: "por aula",
+              features: [
+                "Aulas quando precisar",
+                "Tópicos específicos",
+                "Flexibilidade total",
+                "Sem contrato",
+                "Mesma qualidade"
+              ],
+              popular: false
+            }
+          ].map((plan, index) => (
+            <div key={index} className={`bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 ${plan.popular ? 'transform scale-105 border-4 border-yellow-400' : ''}`}>
+              {plan.popular && (
+                <div className="text-center mb-4">
+                  <span className="bg-yellow-400 text-yellow-900 px-4 py-1 rounded-full text-sm font-bold">MAIS POPULAR</span>
+                </div>
+              )}
+              <h3 className="text-2xl font-bold text-purple-700 mb-2 text-center">{plan.title}</h3>
+              <div className="text-center mb-6">
+                <span className="text-4xl font-bold text-gray-800">{plan.price}</span>
+                <span className="text-gray-600">/{plan.period}</span>
+              </div>
+              <ul className="space-y-3 mb-8">
+                {plan.features.map((feature, i) => (
+                  <li key={i} className="flex items-center text-gray-700">
+                    <span className="text-green-500 mr-2">✓</span>
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+              <a
+                href="https://wa.me/5534991308780"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`block text-center py-3 px-6 rounded-xl font-bold transition-all duration-300 ${
+                  plan.popular 
+                    ? 'bg-yellow-400 hover:bg-yellow-500 text-yellow-900' 
+                    : 'bg-purple-500 hover:bg-purple-600 text-white'
+                }`}
+              >
+                Escolher este plano
+              </a>
+            </div>
+          ))}
+        </div>
+
+        <div className="bg-green-50 border-l-4 border-green-500 p-6 rounded-xl max-w-4xl mx-auto">
+          <div className="flex items-start">
+            <div className="text-3xl mr-4">🔒</div>
+            <div>
+              <h3 className="text-xl font-bold text-green-800 mb-2">Garantia de Satisfação</h3>
+              <p className="text-green-700">
+                Se após sua primeira aula você não se sentir confortável com nosso método, 
+                devolvemos seu dinheiro. Acreditamos tanto no nosso trabalho que oferecemos 
+                essa garantia para que você possa experimentar sem riscos.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
+  const MaterialsPage = () => (
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-beige-50 to-yellow-50 py-20 px-6">
+      <div className="max-w-6xl mx-auto">
+        <h1 className="text-4xl md:text-5xl font-bold text-center text-purple-800 mb-8">Materiais de Apoio</h1>
+        <p className="text-xl text-center text-gray-700 mb-16 max-w-3xl mx-auto">
+          Recursos exclusivos para praticar no seu tempo e reforçar o que aprendeu nas aulas.
+        </p>
+        
+        <div className="grid md:grid-cols-2 gap-12 mb-16">
+          <div className="bg-white rounded-2xl p-8 shadow-lg">
+            <div className="text-6xl mb-6">📄</div>
+            <h2 className="text-2xl font-bold text-purple-700 mb-4">Guias em PDF</h2>
+            <p className="text-gray-700 mb-6">
+              Baixe nossos manuais simples e ilustrados com passo a passo para as tarefas mais comuns:
+            </p>
+            <ul className="space-y-2 text-gray-600 mb-6">
+              <li>• Como usar o WhatsApp</li>
+              <li>• Segurança na internet</li>
+              <li>• Bancos digitais passo a passo</li>
+              <li>• Vídeo chamadas sem complicação</li>
+              <li>• Cuidados com senhas</li>
+            </ul>
+            <button className="text-purple-600 font-bold hover:text-purple-800 transition-colors">
+              Baixar todos os PDFs →
+            </button>
+          </div>
+
+          <div className="bg-white rounded-2xl p-8 shadow-lg">
+            <div className="text-6xl mb-6">🎥</div>
+            <h2 className="text-2xl font-bold text-purple-700 mb-4">Videoaulas</h2>
+            <p className="text-gray-700 mb-6">
+              Assista às nossas videoaulas com linguagem simples e velocidade adequada:
+            </p>
+            <ul className="space-y-2 text-gray-600 mb-6">
+              <li>• Navegando no celular</li>
+              <li>• Enviando fotos e mensagens</li>
+              <li>• Fazendo compras online com segurança</li>
+              <li>• Usando aplicativos úteis</li>
+              <li>• Evitando golpes digitais</li>
+            </ul>
+            <button className="text-purple-600 font-bold hover:text-purple-800 transition-colors">
+              Acessar videoaulas →
+            </button>
+          </div>
+        </div>
+
+        <div className="bg-yellow-50 border border-yellow-200 rounded-2xl p-8">
+          <h2 className="text-2xl font-bold text-yellow-800 mb-4">💡 Dica importante</h2>
+          <p className="text-yellow-700 text-lg leading-relaxed">
+            Use esses materiais como reforço, não como substituto das aulas. 
+            A prática guiada com nosso professor é essencial para tirar dúvidas 
+            e ganhar confiança. Volte aos materiais sempre que precisar!
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+
+  const renderCurrentPage = () => {
+    switch (activePage) {
+      case "home": return <HomePage />;
+      case "services": return <ServicesPage />;
+      case "about": return <AboutPage />;
+      case "contact": return <ContactPage />;
+      case "pricing": return <PricingPage />;
+      case "materials": return <MaterialsPage />;
+      default: return <HomePage />;
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-beige-100">
+      {/* WhatsApp Fixed Button */}
+      <a
+        href="https://wa.me/5534991308780"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg transition-all duration-300 transform hover:scale-110 z-50"
+        style={{ width: '60px', height: '60px' }}
+      >
+        <div className="text-2xl">💬</div>
+      </a>
+
+      {/* Header */}
+      <header className="bg-white shadow-lg sticky top-0 z-40">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex justify-between items-center py-4">
+            <div className="flex items-center">
+              <div className="text-4xl mr-3">🎓</div>
+              <h1 className="text-2xl font-bold text-purple-800">Tô no Digital UAI</h1>
+            </div>
+            
+            {/* Desktop Menu */}
+            <nav className="hidden md:flex space-x-8">
+              {[
+                { id: "home", label: "Início" },
+                { id: "services", label: "Serviços" },
+                { id: "about", label: "Sobre" },
+                { id: "pricing", label: "Preços" },
+                { id: "materials", label: "Materiais" },
+                { id: "contact", label: "Contato" }
+              ].map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => setActivePage(item.id)}
+                  className={`font-semibold transition-colors duration-300 pb-1 ${
+                    activePage === item.id 
+                      ? 'text-purple-600 border-b-2 border-purple-600' 
+                      : 'text-gray-600 hover:text-purple-600'
+                  }`}
+                >
+                  {item.label}
+                </button>
+              ))}
+            </nav>
+
+            {/* Mobile Menu Button */}
+            <button
+              className="md:hidden text-gray-600"
+              onClick={() => setMenuOpen(!menuOpen)}
+            >
+              <div className="text-2xl">☰</div>
+            </button>
+          </div>
+
+          {/* Mobile Menu */}
+          {menuOpen && (
+            <nav className="md:hidden bg-white border-t border-gray-200 py-4">
+              {[
+                { id: "home", label: "Início" },
+                { id: "services", label: "Serviços" },
+                { id: "about", label: "Sobre" },
+                { id: "pricing", label: "Preços" },
+                { id: "materials", label: "Materiais" },
+                { id: "contact", label: "Contato" }
+              ].map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => setActivePage(item.id)}
+                  className={`block w-full text-left px-4 py-2 font-semibold ${
+                    activePage === item.id ? 'text-purple-600 bg-purple-50' : 'text-gray-600'
+                  }`}
+                >
+                  {item.label}
+                </button>
+              ))}
+            </nav>
+          )}
+        </div>
+      </header>
+
+      {/* Main Content */}
+      <main>
+        {renderCurrentPage()}
+      </main>
+
+      {/* Footer */}
+      <footer className="bg-purple-800 text-white py-12">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid md:grid-cols-3 gap-8">
+            <div>
+              <div className="flex items-center mb-4">
+                <div className="text-3xl mr-3">🎓</div>
+                <h3 className="text-xl font-bold">Tô no Digital UAI</h3>
+              </div>
+              <p className="text-purple-100 mb-4">
+                Tecnologia sem medo, no seu tempo e do seu jeito. 
+                Ensino com paciência para pessoas idosas e iniciantes.
+              </p>
+            </div>
+            
+            <div>
+              <h4 className="text-lg font-semibold mb-4">Contato</h4>
+              <div className="space-y-2 text-purple-100">
+                <p>📱 WhatsApp: +55 34 99130-8780</p>
+                <p>📍 Atendemos em Uberlândia e região</p>
+                <p>🌐 Online para todo Brasil</p>
+              </div>
+            </div>
+            
+            <div>
+              <h4 className="text-lg font-semibold mb-4">Links Rápidos</h4>
+              <div className="space-y-2">
+                {[
+                  { id: "home", label: "Início" },
+                  { id: "services", label: "Serviços" },
+                  { id: "about", label: "Sobre" },
+                  { id: "pricing", label: "Preços" },
+                  { id: "materials", label: "Materiais" }
+                ].map((item) => (
+                  <button
+                    key={item.id}
+                    onClick={() => setActivePage(item.id)}
+                    className="block text-purple-100 hover:text-white transition-colors"
+                  >
+                    {item.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+          
+          <div className="border-t border-purple-700 mt-8 pt-8 text-center text-purple-200">
+            <p>&copy; 2024 Tô no Digital UAI. Todos os direitos reservados.</p>
+            <p className="mt-2">Tecnologia com empatia, paciência e autonomia.</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+};
+
+export default App;
