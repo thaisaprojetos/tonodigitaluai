@@ -130,11 +130,13 @@
           <h2 class="text-3xl font-bold text-center text-purple-800 mb-12">Histórias de nossos alunos</h2>
           <div class="grid md:grid-cols-2 gap-8">
             <div class="bg-white rounded-2xl p-8 shadow-lg">
+              <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Idosa usando celular" class="rounded-lg mb-4 w-full">
               <div class="text-yellow-400 text-2xl mb-4">★★★★★</div>
               <p class="text-gray-700 mb-4 italic">"Aprendi a falar com meus netos no WhatsApp. Hoje, eu mesma envio fotos e faço chamadas de vídeo. Me sinto mais independente!"</p>
               <p class="font-semibold text-purple-700">— Maria, 78 anos</p>
             </div>
             <div class="bg-white rounded-2xl p-8 shadow-lg">
+              <img src="https://images.unsplash.com/photo-1580518324679-33950358983c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Idoso usando tablet" class="rounded-lg mb-4 w-full">
               <div class="text-yellow-400 text-2xl mb-4">★★★★★</div>
               <p class="text-gray-700 mb-4 italic">"Nunca tinha usado internet bancária. Agora pago minhas contas sozinho e até faço PIX. Que alívio não depender mais dos outros!"</p>
               <p class="font-semibold text-purple-700">— José, 65 anos</p>
@@ -349,7 +351,7 @@
             <h3 class="text-2xl font-bold text-purple-700 mb-2 text-center">Suporte Avulso</h3>
             <div class="text-center mb-6">
               <span class="text-4xl font-bold text-gray-800">R$ 120</span>
-              <span class="text-gray-600">/por aula</span>
+              <span class="text-gray-600">/por hora</span>
             </div>
             <ul class="space-y-3 mb-8 text-gray-700">
               <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Aulas quando precisar</li>
@@ -584,21 +586,17 @@
   <!-- JavaScript -->
   <script>
     function showPage(pageId) {
-      // Esconde todas as páginas
       document.querySelectorAll('.page').forEach(div => {
         div.classList.remove('active');
         div.classList.add('hidden');
       });
-      // Mostra a página selecionada
       const page = document.getElementById(pageId);
       page.classList.remove('hidden');
       page.classList.add('active');
-      // Fecha menu mobile
       const menu = document.getElementById('mobile-menu');
       if (!menu.classList.contains('hidden')) {
         menu.classList.add('hidden');
       }
-      // Scroll para o topo
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
@@ -607,7 +605,6 @@
       menu.classList.toggle('hidden');
     }
 
-    // Inicializa com a página Home
     document.addEventListener('DOMContentLoaded', function() {
       showPage('home');
     });
