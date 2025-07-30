@@ -8,8 +8,8 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body { margin: 0; font-family: 'Segoe UI', sans-serif; background-color: #f7f5ee; }
-    .hidden { display: none; }
-    .active { display: block; }
+    .hidden { display: none !important; }
+    .active { display: block !important; }
     * { box-sizing: border-box; }
     a, button, input, textarea, select { outline: none; }
     img { max-width: 100%; }
@@ -31,12 +31,14 @@
       z-index: 100; 
     }
     .whatsapp-btn:hover { transform: scale(1.1); }
+    .page { padding: 0 1rem; }
+    @media (min-width: 768px) { .page { padding: 0 2rem; } }
   </style>
 </head>
 <body class="font-sans">
 
   <!-- WhatsApp Button -->
-  <a href="https://wa.me/5534991308780" target="_blank" class="whatsapp-btn">💬</a>
+  <a href="https://wa.me/5534991308780" target="_blank" class="whatsapp-btn" aria-label="Fale conosco no WhatsApp">💬</a>
 
   <!-- Header -->
   <header class="bg-white shadow-lg sticky top-0 z-40">
@@ -76,9 +78,9 @@
   </header>
 
   <!-- Pages -->
-  <main>
+  <main class="min-h-screen">
     <!-- Home Page -->
-    <div id="home" class="active">
+    <div id="home" class="page active">
       <section class="py-20 px-6 text-center bg-gradient-to-br from-purple-50 via-beige-50 to-yellow-50">
         <div class="max-w-4xl mx-auto">
           <h1 class="text-4xl md:text-6xl font-bold text-purple-800 mb-6 leading-tight">
@@ -143,8 +145,8 @@
     </div>
 
     <!-- Services Page -->
-    <div id="services" class="hidden py-20 px-6">
-      <div class="max-w-6xl mx-auto">
+    <div id="services" class="page hidden">
+      <div class="max-w-6xl mx-auto py-20 px-6">
         <h1 class="text-4xl md:text-5xl font-bold text-center text-purple-800 mb-16">Nossos Serviços</h1>
         
         <div class="grid md:grid-cols-2 gap-12 mb-16">
@@ -174,42 +176,42 @@
           <h2 class="text-3xl font-bold text-center text-purple-800 mb-8">Recursos do WhatsApp</h2>
           <div class="grid md:grid-cols-3 gap-8">
             <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">
-              <div class="text-5xl mb-4">🔒</div>
+              <div class="text-5xl mb-6">🔒</div>
               <h3 class="text-xl font-bold text-purple-700 mb-4">Criptografia de ponta a ponta</h3>
               <p class="text-gray-600">Mensagens e chamadas protegidas com segurança avançada.</p>
             </div>
             <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">
-              <div class="text-5xl mb-4">🌐</div>
+              <div class="text-5xl mb-6">🌐</div>
               <h3 class="text-xl font-bold text-purple-700 mb-4">Ligue e envie mensagens gratuitamente*</h3>
               <p class="text-gray-600">Comunique-se com o mundo sem custo adicional.</p>
             </div>
             <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">
-              <div class="text-5xl mb-4">👥</div>
+              <div class="text-5xl mb-6">👥</div>
               <h3 class="text-xl font-bold text-purple-700 mb-4">Grupos</h3>
               <p class="text-gray-600">Converse facilmente com grupos de pessoas.</p>
             </div>
             <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">
-              <div class="text-5xl mb-4">🎨</div>
+              <div class="text-5xl mb-6">🎨</div>
               <h3 class="text-xl font-bold text-purple-700 mb-4">Expressão criativa</h3>
               <p class="text-gray-600">Use adesivos, voz, GIFs e mais para se expressar.</p>
             </div>
             <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">
-              <div class="text-5xl mb-4">🛡️</div>
+              <div class="text-5xl mb-6">🛡️</div>
               <h3 class="text-xl font-bold text-purple-700 mb-4">Proteção</h3>
               <p class="text-gray-600">Camadas de segurança para ajudar a manter sua privacidade.</p>
             </div>
             <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">
-              <div class="text-5xl mb-4">📸</div>
+              <div class="text-5xl mb-6">📸</div>
               <h3 class="text-xl font-bold text-purple-700 mb-4">Status</h3>
               <p class="text-gray-600">Compartilhe fotos, vídeos e notas de voz no Status.</p>
             </div>
             <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">
-              <div class="text-5xl mb-4">📢</div>
+              <div class="text-5xl mb-6">📢</div>
               <h3 class="text-xl font-bold text-purple-700 mb-4">Notícias</h3>
               <p class="text-gray-600">Fique atualizado sobre assuntos que importam para você.</p>
             </div>
             <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">
-              <div class="text-5xl mb-4">❓</div>
+              <div class="text-5xl mb-6">❓</div>
               <h3 class="text-xl font-bold text-purple-700 mb-4">Suporte</h3>
               <p class="text-gray-600">Obtenha ajuda com qualquer coisa.</p>
             </div>
@@ -229,16 +231,16 @@
     </div>
 
     <!-- About Page -->
-    <div id="about" class="hidden py-20 px-6">
-      <div class="max-w-6xl mx-auto">
+    <div id="about" class="page hidden">
+      <div class="max-w-6xl mx-auto py-20 px-6">
         <h1 class="text-4xl md:text-5xl font-bold text-center text-purple-800 mb-16">Sobre Nós</h1>
         
         <div class="grid lg:grid-cols-2 gap-16 items-center mb-20">
           <div>
             <img 
-              src="https://via.placeholder.com/500x400?text=Sua+Foto" 
+              src="thaisa.jpg" 
               alt="Thaisa, fundadora do Tô no Digital UAI" 
-              class="rounded-2xl shadow-lg"
+              class="rounded-2xl shadow-lg w-full h-auto"
             />
           </div>
           <div>
@@ -287,8 +289,8 @@
     </div>
 
     <!-- Pricing Page -->
-    <div id="pricing" class="hidden py-20 px-6">
-      <div class="max-w-7xl mx-auto">
+    <div id="pricing" class="page hidden">
+      <div class="max-w-7xl mx-auto py-20 px-6">
         <h1 class="text-4xl md:text-5xl font-bold text-center text-purple-800 mb-8">Nossos Planos</h1>
         <p class="text-xl text-center text-gray-700 mb-16 max-w-3xl mx-auto">
           Escolha a opção que melhor se adapta ao seu ritmo de aprendizado. 
@@ -384,8 +386,8 @@
     </div>
 
     <!-- Materials Page -->
-    <div id="materials" class="hidden py-20 px-6">
-      <div class="max-w-6xl mx-auto">
+    <div id="materials" class="page hidden">
+      <div class="max-w-6xl mx-auto py-20 px-6">
         <h1 class="text-4xl md:text-5xl font-bold text-center text-purple-800 mb-8">Materiais de Apoio</h1>
         <p class="text-xl text-center text-gray-700 mb-16 max-w-3xl mx-auto">
           Recursos exclusivos para praticar no seu tempo e reforçar o que aprendeu nas aulas.
@@ -441,8 +443,8 @@
     </div>
 
     <!-- Contact Page -->
-    <div id="contact" class="hidden py-20 px-6">
-      <div class="max-w-6xl mx-auto">
+    <div id="contact" class="page hidden">
+      <div class="max-w-6xl mx-auto py-20 px-6">
         <h1 class="text-4xl md:text-5xl font-bold text-center text-purple-800 mb-16">Entre em Contato</h1>
         
         <div class="grid lg:grid-cols-2 gap-16">
@@ -523,3 +525,92 @@
                 <li class="flex items-start">
                   <span class="text-green-500 mr-3">✓</span>
                   Foco na sua autonomia e segurança
+                </li>
+                <li class="flex items-start">
+                  <span class="text-green-500 mr-3">✓</span>
+                  Suporte contínuo mesmo após as aulas
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-purple-800 text-white py-12">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="grid md:grid-cols-3 gap-8">
+        <div>
+          <div class="flex items-center mb-4">
+            <div class="text-3xl mr-3">🎓</div>
+            <h3 class="text-xl font-bold">Tô no Digital UAI</h3>
+          </div>
+          <p class="text-purple-100 mb-4">
+            Tecnologia sem medo, no seu tempo e do seu jeito. 
+            Ensino com paciência para pessoas idosas e iniciantes.
+          </p>
+        </div>
+        
+        <div>
+          <h4 class="text-lg font-semibold mb-4">Contato</h4>
+          <div class="space-y-2 text-purple-100">
+            <p>📱 WhatsApp: +55 34 99130-8780</p>
+            <p>📍 Atendemos em Uberlândia e região</p>
+            <p>🌐 Online para todo Brasil</p>
+          </div>
+        </div>
+        
+        <div>
+          <h4 class="text-lg font-semibold mb-4">Links Rápidos</h4>
+          <div class="space-y-2">
+            <button onclick="showPage('home')" class="block text-purple-100 hover:text-white transition-colors">Início</button>
+            <button onclick="showPage('services')" class="block text-purple-100 hover:text-white transition-colors">Serviços</button>
+            <button onclick="showPage('about')" class="block text-purple-100 hover:text-white transition-colors">Sobre</button>
+            <button onclick="showPage('pricing')" class="block text-purple-100 hover:text-white transition-colors">Preços</button>
+            <button onclick="showPage('materials')" class="block text-purple-100 hover:text-white transition-colors">Materiais</button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="border-t border-purple-700 mt-8 pt-8 text-center text-purple-200">
+        <p>&copy; 2024 Tô no Digital UAI. Todos os direitos reservados.</p>
+        <p class="mt-2">Tecnologia com empatia, paciência e autonomia.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    function showPage(pageId) {
+      // Esconde todas as páginas
+      document.querySelectorAll('.page').forEach(div => {
+        div.classList.remove('active');
+        div.classList.add('hidden');
+      });
+      // Mostra a página selecionada
+      const page = document.getElementById(pageId);
+      page.classList.remove('hidden');
+      page.classList.add('active');
+      // Fecha menu mobile
+      const menu = document.getElementById('mobile-menu');
+      if (!menu.classList.contains('hidden')) {
+        menu.classList.add('hidden');
+      }
+      // Scroll para o topo
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function toggleMenu() {
+      const menu = document.getElementById('mobile-menu');
+      menu.classList.toggle('hidden');
+    }
+
+    // Inicializa com a página Home
+    document.addEventListener('DOMContentLoaded', function() {
+      showPage('home');
+    });
+  </script>
+</body>
+</html>
