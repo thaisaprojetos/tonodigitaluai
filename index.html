@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Tô no Digital UAI - Tecnologia sem medo</title>
-  <meta name="description" content="Aulas de tecnologia para idosos e iniciantes com paciência e autonomia. Aprenda WhatsApp, celular, bancos digitais e mais."/>
+  <meta name="description" content="Aulas de tecnologia para idosos e iniciantes com paciência e autonomia."/>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
@@ -14,6 +14,24 @@
     * { box-sizing: border-box; }
     a, button, input, textarea, select { outline: none; }
     img { max-width: 100%; }
+    .whatsapp-btn {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background-color: #25D366;
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      transition: transform 0.3s;
+      z-index: 100;
+    }
+    .whatsapp-btn:hover { transform: scale(1.1); }
   </style>
 </head>
 <body class="font-sans">
@@ -165,47 +183,21 @@
         </div>
       );
 
-     const AboutPage = () => (
-  <div className="min-h-screen bg-gradient-to-br from-purple-50 via-beige-50 to-yellow-50 py-20 px-6">
-    <div className="max-w-6xl mx-auto">
-      <h1 className="text-4xl md:text-5xl font-bold text-center text-purple-800 mb-16">Sobre Nós</h1>
-      
-      <div className="mb-20">
-        <h2 className="text-3xl font-bold text-purple-800 mb-6">Nossa Missão</h2>
-        <p className="text-xl text-gray-700 leading-relaxed mb-6">
-          Tornar o mundo digital acessível a todas as pessoas, especialmente idosos e iniciantes, com respeito, paciência e empatia.
-        </p>
-        <p className="text-xl text-gray-700 leading-relaxed">
-          Acreditamos que ninguém deveria se sentir excluído da era digital. A tecnologia deve servir a todos, em qualquer idade.
-        </p>
-      </div>
-
-      <div>
-        <h2 className="text-3xl font-bold text-center text-purple-800 mb-12">Quem Somos</h2>
-        <p className="text-xl text-gray-700 text-center max-w-4xl mx-auto mb-12 leading-relaxed">
-          Somos profissionais de tecnologia apaixonados por ensinar. Com experiência em educação inclusiva, 
-          desenvolvemos métodos simples e eficazes para que qualquer pessoa possa aprender a usar o digital 
-          com confiança e autonomia.
-        </p>
-
-        <div className="grid md:grid-cols-4 gap-8 mt-16">
-          {[
-            { icon: "💖", title: "Paciência", desc: "Nada de pressa. Respeitamos seu ritmo de aprendizado." },
-            { icon: "🤝", title: "Inclusão", desc: "Tecnologia para todos, independentemente da idade." },
-            { icon: "🔓", title: "Autonomia", desc: "Nosso objetivo é você fazer tudo sozinho." },
-            { icon: "😊", title: "Alegria", desc: "Aprender pode e deve ser uma experiência positiva." }
-          ].map((value, index) => (
-            <div key={index} className="text-center">
-              <div className="text-5xl mb-4">{value.icon}</div>
-              <h3 className="text-xl font-bold text-purple-700 mb-2">{value.title}</h3>
-              <p className="text-gray-600">{value.desc}</p>
+      const AboutPage = () => (
+        <div className="min-h-screen bg-gradient-to-br from-purple-50 via-beige-50 to-yellow-50 py-20 px-6">
+          <div className="max-w-6xl mx-auto">
+            <h1 className="text-4xl md:text-5xl font-bold text-center text-purple-800 mb-16">Sobre Nós</h1>
+            
+            <div className="mb-20">
+              <h2 className="text-3xl font-bold text-purple-800 mb-6">Nossa Missão</h2>
+              <p className="text-xl text-gray-700 leading-relaxed mb-6">
+                Tornar o mundo digital acessível a todas as pessoas, especialmente idosos e iniciantes, com respeito, paciência e empatia.
+              </p>
+              <p className="text-xl text-gray-700 leading-relaxed">
+                Acreditamos que ninguém deveria se sentir excluído da era digital. A tecnologia deve servir a todos, em qualquer idade.
+              </p>
             </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  </div>
-);
+
             <div>
               <h2 className="text-3xl font-bold text-center text-purple-800 mb-12">Quem Somos</h2>
               <p className="text-xl text-gray-700 text-center max-w-4xl mx-auto mb-12 leading-relaxed">
@@ -348,7 +340,7 @@
               {[
                 {
                   title: "Visita Inicial",
-                  price: "Grátis",
+                  price: "R$ 130",
                   period: "",
                   features: [
                     "Identificação das necessidades específicas",
@@ -360,8 +352,8 @@
                   popular: false
                 },
                 {
-                  title: "Visitas de 1h",
-                  price: "R$ 120",
+                  title: "Visitas Individuais",
+                  price: "Consulte",
                   period: "/por hora",
                   features: [
                     "Aulas presenciais ou online",
@@ -514,10 +506,9 @@
             href="https://wa.me/5534991308780"
             target="_blank"
             rel="noopener noreferrer"
-            className="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 z-50"
-            style={{ width: '60px', height: '60px' }}
+            className="whatsapp-btn"
           >
-            <div className="text-2xl">💬</div>
+            💬
           </a>
 
           <header className="bg-white shadow-lg sticky top-0 z-40">
@@ -634,7 +625,7 @@
               </div>
               
               <div className="border-t border-purple-700 mt-8 pt-8 text-center text-purple-200">
-                <p>&copy; 2024 Tô no Digital UAI. Todos os direitos reservados.</p>
+                <p>&copy; 2025 Tô no Digital UAI. Todos os direitos reservados.</p>
                 <p className="mt-2">Tecnologia com empatia, paciência e autonomia.</p>
               </div>
             </div>
